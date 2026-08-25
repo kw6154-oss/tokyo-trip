@@ -151,6 +151,12 @@
   .area-subhead{font-size:11px;font-weight:700;color:#4C6FE0;letter-spacing:0.5px;margin:4px 0 10px;text-transform:uppercase;display:flex;align-items:center;gap:8px;}
   .area-subhead::after{content:'';flex:1;height:1px;background:#ECEBE5;}
   .area-subhead:not(:first-child){margin-top:28px;}
+  .area-search-row{display:flex;align-items:center;gap:8px;margin-bottom:16px;position:relative;}
+  .area-search-input{flex:1;font-size:14px;padding:11px 14px;border:1px solid #ECEBE5;border-radius:12px;font-family:'Inter',sans-serif;color:#2B2B26;background:#F7F7F4;}
+  .area-search-input:focus{outline:none;border-color:#4C6FE0;background:#FFF;}
+  .area-search-clear{position:absolute;right:10px;background:none;border:none;color:#B5B4AC;cursor:pointer;font-size:13px;padding:4px;}
+  .area-search-clear:hover{color:#B5432D;}
+  .area-search-noresult{font-size:13px;color:#B5B4AC;text-align:center;padding:20px 0;display:none;}
   .area-group.course-box{background:#F4F7FE;border-color:#DCE6FB;}
   .course-desc{font-size:12px;color:#8B8B85;margin:-4px 0 10px;line-height:1.4;}
   .area-group:last-child{margin-bottom:0;}
@@ -405,13 +411,17 @@
   </div>
 
   <div class="sec-title" style="margin-top:36px;">📍 지역별 스팟<button class="sec-toggle" onclick="toggleSection('content-areas', this)">▾</button></div>
+  <div class="area-search-row">
+    <input type="text" id="areaSearchInput" class="area-search-input" placeholder="🔍 장소·지역 검색">
+    <button class="area-search-clear" id="areaSearchClear" onclick="clearAreaSearch()" style="display:none;">✕</button>
+  </div>
   <div id="content-areas">
-  <div class="area-subhead">🎯 추천 코스<button class="sec-toggle" onclick="toggleSection('content-courses', this)">▾</button></div>
+  <div class="area-subhead" id="subhead-courses">🎯 추천 코스<button class="sec-toggle" onclick="toggleSection('content-courses', this)">▾</button></div>
   <div id="content-courses">
   <div class="area-group course-box" id="cat-kokyorun">
     <div class="area-name-row"><div class="area-name">🏃 러닝코스<a href="https://blog.naver.com/dhfhqlrnal/224373337310" target="_blank" rel="noopener" style="font-size:11px;font-weight:600;color:#4C6FE0;text-decoration:none;">↗ 블로그</a></div><select class="day-select" data-cat="cat-kokyorun" onchange="assignCategoryToDay('cat-kokyorun', this.value)"><option value="">일정에 추가</option><option value="day1">1DAY</option><option value="day2">2DAY</option><option value="day3">3DAY</option><option value="day4">4DAY</option></select></div>
     <div class="course-desc">아침 러닝으로 도쿄를 색다르게 즐기는 코스</div>
-    <div class="area-item-row"><a class="area-item" href="https://www.google.com/maps/search/?api=1&query=ASICS+RUN+TOKYO+Marunouchi" target="_blank" rel="noopener">황궁런 (아식스 런 도쿄 마루노우치)</a><button class="add-btn" data-cat="cat-kokyorun" data-name="🏯 황궁런 (아식스 런 도쿄 마루노우치)" onclick="addToItinerary('cat-kokyorun', '🏯 황궁런 (아식스 런 도쿄 마루노우치)', 'https://www.google.com/maps/search/?api=1&query=ASICS+RUN+TOKYO+Marunouchi', this)">+</button></div>
+    <div class="area-item-row"><a class="area-item" href="https://www.google.com/maps/search/?api=1&query=ASICS+RUN+TOKYO+Marunouchi" target="_blank" rel="noopener">아식스 런 도쿄 마루노우치</a><button class="add-btn" data-cat="cat-kokyorun" data-name="🏯 아식스 런 도쿄 마루노우치" onclick="addToItinerary('cat-kokyorun', '🏯 아식스 런 도쿄 마루노우치', 'https://www.google.com/maps/search/?api=1&query=ASICS+RUN+TOKYO+Marunouchi', this)">+</button></div>
     <div class="area-item-row"><a class="area-item" href="https://www.google.com/maps/search/?api=1&query=Kikyomon+Imperial+Palace+Tokyo" target="_blank" rel="noopener">황궁런 시작점 (키쿄몬)</a><button class="add-btn" data-cat="cat-kokyorun" data-name="🚩 황궁런 시작점 (키쿄몬)" onclick="addToItinerary('cat-kokyorun', '🚩 황궁런 시작점 (키쿄몬)', 'https://www.google.com/maps/search/?api=1&query=Kikyomon+Imperial+Palace+Tokyo', this)">+</button></div>
     <div class="area-item-row"><a class="area-item" href="https://www.google.com/maps/search/?api=1&query=Shiba+Park+Tokyo" target="_blank" rel="noopener">도쿄타워런 (시바공원)</a><button class="add-btn" data-cat="cat-kokyorun" data-name="🗼 도쿄타워런 (시바공원)" onclick="addToItinerary('cat-kokyorun', '🗼 도쿄타워런 (시바공원)', 'https://www.google.com/maps/search/?api=1&query=Shiba+Park+Tokyo', this)">+</button></div>
   </div>
@@ -467,7 +477,7 @@
     <div class="area-item-row"><span class="area-item" style="cursor:pointer;" onclick="scrollToCat('cat-odaiba')">오다이바</span></div>
   </div>
   </div>
-  <div class="area-subhead">📍 지역별<button class="sec-toggle" onclick="toggleSection('content-regions', this)">▾</button></div>
+  <div class="area-subhead" id="subhead-regions">📍 지역별<button class="sec-toggle" onclick="toggleSection('content-regions', this)">▾</button></div>
   <div id="content-regions">
   <div class="area-group" id="cat-yurakucho">
     <div class="area-name-row"><div class="area-name">🏮 유라쿠초</div><select class="day-select" data-cat="cat-yurakucho" onchange="assignCategoryToDay('cat-yurakucho', this.value)"><option value="">일정에 추가</option><option value="day1">1DAY</option><option value="day2">2DAY</option><option value="day3">3DAY</option><option value="day4">4DAY</option></select></div>
@@ -594,6 +604,7 @@
     <div class="area-name-row"><div class="area-name">🏝️ 오다이바</div><select class="day-select" data-cat="cat-odaiba" onchange="assignCategoryToDay('cat-odaiba', this.value)"><option value="">일정에 추가</option><option value="day1">1DAY</option><option value="day2">2DAY</option><option value="day3">3DAY</option><option value="day4">4DAY</option></select></div>
     <div class="area-item-row"><a class="area-item" href="https://www.google.com/maps/search/?api=1&query=Odaiba+Marine+Park+Tokyo" target="_blank" rel="noopener"><span>오다이바 해변공원</span></a><button class="add-btn" data-cat="cat-odaiba" data-name="🏝️ 오다이바 해변공원" onclick="addToItinerary('cat-odaiba', '🏝️ 오다이바 해변공원', 'https://www.google.com/maps/search/?api=1&query=Odaiba+Marine+Park+Tokyo', this)">+</button></div>
   </div>
+  <div class="area-search-noresult" id="areaSearchNoResult">검색 결과가 없어요</div>
 
   </div>
   </div>
@@ -681,12 +692,13 @@
     return null;
   }
   function openInMapsApp(webUrl){
-    var query = extractMapsQuery(webUrl);
     var appUrl = null;
-    if(query){
-      var encoded = encodeURIComponent(query);
-      if(isIOS()){ appUrl = 'comgooglemaps://?q=' + encoded; }
-      else if(isAndroid()){ appUrl = 'geo:0,0?q=' + encoded; }
+    if(isIOS()){
+      // 원래 URL(query_place_id 등 포함)을 그대로 앱에서 열어 정확도 유지
+      appUrl = webUrl.replace(/^https?:\/\//, 'comgooglemapsurl://');
+    } else if(isAndroid()){
+      var query = extractMapsQuery(webUrl);
+      if(query){ appUrl = 'geo:0,0?q=' + encodeURIComponent(query); }
     }
     if(!appUrl){
       window.open(webUrl, '_blank');
@@ -725,8 +737,8 @@
 
     var appUrl = null;
     if(isIOS()){
-      appUrl = 'comgooglemaps://?saddr=' + origin + '&daddr=' + destination +
-        '&waypoints=' + waypoints + '&directionsmode=transit';
+      // 웹에서 정상 동작하는 URL을 그대로 앱 안에서 열기 (waypoints 등 파라미터 그대로 보존)
+      appUrl = webUrl.replace(/^https?:\/\//, 'comgooglemapsurl://');
     }
     if(!appUrl){
       window.open(webUrl, '_blank');
@@ -1356,6 +1368,35 @@
       if(e.key === 'Enter'){ saveBudget(); }
     });
   })();
+
+  function filterAreaGroups(){
+    var term = document.getElementById('areaSearchInput').value.trim().toLowerCase();
+    document.getElementById('areaSearchClear').style.display = term ? 'block' : 'none';
+
+    var anyVisible = false;
+    ['content-courses', 'content-regions'].forEach(function(containerId){
+      var container = document.getElementById(containerId);
+      var groupVisible = false;
+      container.querySelectorAll('.area-group').forEach(function(group){
+        var match = !term || group.textContent.toLowerCase().indexOf(term) > -1;
+        group.style.display = match ? '' : 'none';
+        if(match){ groupVisible = true; anyVisible = true; }
+      });
+      var subhead = document.getElementById(containerId === 'content-courses' ? 'subhead-courses' : 'subhead-regions');
+      if(subhead){ subhead.style.display = groupVisible ? '' : 'none'; }
+    });
+
+    document.getElementById('areaSearchNoResult').style.display = (term && !anyVisible) ? 'block' : 'none';
+  }
+
+  function clearAreaSearch(){
+    var input = document.getElementById('areaSearchInput');
+    input.value = '';
+    filterAreaGroups();
+    input.focus();
+  }
+
+  document.getElementById('areaSearchInput').addEventListener('input', filterAreaGroups);
 
   function scrollToCat(id){
     var el = document.getElementById(id);
