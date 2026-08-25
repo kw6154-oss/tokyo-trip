@@ -76,7 +76,9 @@
   .shopping-check:checked::after{content:'✓';position:absolute;top:-2px;left:3px;font-size:11px;color:#FFF;font-weight:700;}
   .shopping-name{flex:1;font-size:14px;color:#2B2B26;font-weight:500;}
   .shopping-item.checked .shopping-name{color:#B5B4AC;}
-  .shopping-del{background:none;border:none;color:#D6D5CC;cursor:pointer;font-size:13px;padding:0 2px;flex-shrink:0;}
+  #content-shopping.shopping-edit-mode .shopping-name{outline:1px dashed #4C6FE0;outline-offset:2px;border-radius:3px;cursor:text;}
+  .shopping-del{display:none;background:none;border:none;color:#D6D5CC;cursor:pointer;font-size:13px;padding:0 2px;flex-shrink:0;}
+  #content-shopping.shopping-edit-mode .shopping-del{display:inline-block;}
   .shopping-del:hover{color:#B5432D;}
   .shopping-add{display:flex;gap:6px;padding:12px 0;}
   .shopping-add input{flex:1;min-width:0;font-size:13px;padding:8px 10px;border:1px solid #ECEBE5;border-radius:8px;font-family:'Inter',sans-serif;color:#2B2B26;}
@@ -89,6 +91,15 @@
     .prep-row{grid-template-columns:1fr;}
   }
   .pack-item{display:flex;align-items:center;gap:12px;padding:13px 0;border-bottom:1px solid #ECEBE5;}
+  .pack-del{background:none;border:none;color:#D6D5CC;cursor:pointer;font-size:13px;padding:0 2px;flex-shrink:0;}
+  .pack-del:hover{color:#B5432D;}
+  .pack-add{display:none;gap:6px;padding:12px 0;}
+  .pack-add.visible{display:flex;}
+  .field-hint{font-size:10px;color:#B5B4AC;font-weight:500;margin-left:6px;}
+  .pack-add input{flex:1;min-width:0;font-size:13px;padding:8px 10px;border:1px solid #ECEBE5;border-radius:8px;font-family:'Inter',sans-serif;color:#2B2B26;}
+  .pack-add input:focus{outline:none;border-color:#4C6FE0;}
+  .pack-add button{background:#4C6FE0;color:#fff;border:none;border-radius:8px;padding:0 14px;font-size:13px;font-weight:600;cursor:pointer;flex-shrink:0;}
+  .pack-add button:hover{background:#3d5bc4;}
   .pack-item:last-child{border-bottom:none;}
   .pack-check{width:18px;height:18px;border:1.5px solid #D6D5CC;border-radius:50%;background:#FFF;appearance:none;-webkit-appearance:none;cursor:pointer;position:relative;flex-shrink:0;}
   .pack-check:checked{background:#4C6FE0;border-color:#4C6FE0;}
@@ -101,6 +112,9 @@
   .board{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
   .day-card{background:#F7F7F4;border:1px solid #ECEBE5;border-radius:16px;overflow:hidden;}
   .day-head{background:#EAF0FE;padding:14px 18px;display:flex;align-items:baseline;justify-content:space-between;}
+  .day-head-left{display:flex;align-items:center;gap:8px;}
+  .route-btn{background:none;border:1px solid #C9D8FB;border-radius:8px;font-size:12px;padding:3px 7px;cursor:pointer;color:#4C6FE0;line-height:1;}
+  .route-btn:hover{background:#4C6FE0;color:#fff;}
   .day-head .tag{font-size:16px;font-weight:700;color:#2B2B26;}
   .day-head .date{font-size:11px;color:#4C6FE0;font-weight:600;}
   .day-body{padding:16px 18px 18px;}
@@ -159,6 +173,8 @@
   .remove-btn{flex-shrink:0;width:18px;height:18px;border-radius:50%;border:1.5px solid #ECEBE5;background:#FFF;color:#B5B4AC;font-size:10px;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center;padding:0;transition:all 0.15s;}
   .remove-btn:hover{border-color:#DC2626;color:#DC2626;background:#FEF2F2;}
   .area-item:hover{color:#4C6FE0;}
+  .area-blog{font-size:10.5px;color:#4C6FE0;font-weight:600;text-decoration:none;flex-shrink:0;white-space:nowrap;margin-left:4px;}
+  .area-blog:hover{text-decoration:underline;}
   .area-item .pack-ic{font-size:11px;color:#4C6FE0;font-weight:600;}
   .area-time{font-size:11px;color:#8B8B85;font-weight:500;margin-left:6px;}
   .area-empty{font-size:12.5px;color:#B5B4AC;padding:6px 0;font-style:italic;}
@@ -199,8 +215,14 @@
   .expense-balance{text-align:right;font-size:13px;font-weight:700;margin-top:8px;}
   .expense-balance.positive{color:#16A34A;}
   .expense-balance.negative{color:#DC2626;}
-  .expense-hint{font-size:10.5px;color:#B5B4AC;font-weight:500;margin-left:6px;cursor:pointer;text-decoration:underline;padding:8px 4px;display:inline-block;}
-  .budget-input-row{display:none;gap:8px;margin-bottom:16px;}
+  .budget-input-row{display:flex;align-items:center;gap:8px;margin-bottom:16px;}
+  .stay-map-edit{display:none;gap:6px;margin:8px 0;}
+  .stay-map-edit.visible{display:flex;}
+  .stay-map-edit input{flex:1;min-width:0;font-size:12.5px;padding:7px 10px;border:1px solid #ECEBE5;border-radius:8px;font-family:'Inter',sans-serif;color:#2B2B26;}
+  .stay-map-edit input:focus{outline:none;border-color:#4C6FE0;}
+  .stay-map-edit button{background:#4C6FE0;color:#fff;border:none;border-radius:8px;padding:0 14px;font-size:12.5px;font-weight:600;cursor:pointer;flex-shrink:0;}
+  .stay-map-edit button:hover{background:#3d5bc4;}
+  .budget-label{font-size:12.5px;color:#8B8B85;font-weight:600;white-space:nowrap;}
   .budget-input-row input{flex:1;font-size:13px;padding:9px 12px;border:1px solid #ECEBE5;border-radius:8px;font-family:'Inter',sans-serif;color:#2B2B26;}
   .budget-input-row input:focus{outline:none;border-color:#4C6FE0;}
   .budget-input-row button{background:#4C6FE0;color:#fff;border:none;border-radius:8px;padding:0 18px;font-size:13px;font-weight:600;cursor:pointer;}
@@ -223,9 +245,10 @@
 <div class="wrap">
 
   <header>
-    <div>
-      <h1>서울 → 도쿄</h1>
-      <div class="meta"><b>2026.09.10(목) – 09.13(일)</b> · 3박4일 · 인원 2</div>
+    <div id="content-header">
+      <h1 data-edit-id="header-title">서울 → 도쿄</h1>
+      <div class="meta" data-edit-id="header-meta"><b>2026.09.10(목) – 09.13(일)</b> · 3박4일 · 인원 2</div>
+      <small class="field-hint" onclick="toggleEditableSection('content-header')" style="cursor:pointer;">(클릭 시 수정 가능)</small>
     </div>
     <div class="fx-card">
       <div class="header-balance" id="headerBalance"></div>
@@ -234,7 +257,7 @@
     </div>
   </header>
 
-  <div class="sec-title"><span onclick="toggleEditableSection('content-flight')" style="cursor:pointer;">✈️ 항공</span><button class="sec-toggle" onclick="toggleSection('content-flight', this)">▾</button></div>
+  <div class="sec-title"><span onclick="toggleEditableSection('content-flight')" style="cursor:pointer;">✈️ 항공<small class="field-hint">(클릭 시 수정 가능)</small></span><button class="sec-toggle" onclick="toggleSection('content-flight', this)">▾</button></div>
   <div class="flights" id="content-flight">
     <div class="ticket">
       <div class="top-row"><span class="dir">🛫 가는 편</span><span class="pill" data-edit-id="flight-out-status">STANDARD</span></div>
@@ -258,11 +281,15 @@
     </div>
   </div>
 
-  <div class="sec-title"><span onclick="toggleEditableSection('content-stay')" style="cursor:pointer;">🏨 숙소</span><button class="sec-toggle" onclick="toggleSection('content-stay', this)">▾</button></div>
+  <div class="sec-title"><span onclick="toggleEditableSection('content-stay'); toggleStayMapEdit();" style="cursor:pointer;">🏨 숙소<small class="field-hint">(클릭 시 수정 가능)</small></span><button class="sec-toggle" onclick="toggleSection('content-stay', this)">▾</button></div>
   <div class="voucher" id="content-stay">
     <div class="top-row">
       <div class="hname" data-edit-id="stay-name">🏨 Centurion Hotel &amp; Spa Ueno Station</div>
-      <a class="map-ic" href="https://www.google.com/maps/search/?api=1&query=Centurion+Hotel+%26+Spa+Ueno+Station+Tokyo" target="_blank" rel="noopener">↗ 구글맵</a>
+      <a class="map-ic" id="stayMapLink" href="https://www.google.com/maps/search/?api=1&query=Centurion+Hotel+%26+Spa+Ueno+Station+Tokyo" target="_blank" rel="noopener">↗ 구글맵</a>
+    </div>
+    <div class="stay-map-edit" id="stayMapEdit">
+      <input type="text" id="stayMapInput" placeholder="새 구글맵 링크 붙여넣기">
+      <button onclick="saveStayMapLink()">저장</button>
     </div>
     <div class="haddr" data-edit-id="stay-addr">6-8-16 Ueno, Taito-ku, Tokyo 110-0005 &nbsp;·&nbsp; +81-3-5846-8560</div>
     <div class="vgrid">
@@ -273,51 +300,63 @@
 
   <div class="prep-row">
     <div class="prep-col">
-      <div class="sec-title">🎒 준비물<button class="sec-toggle" onclick="toggleSection('content-packing', this)">▾</button></div>
+      <div class="sec-title"><span onclick="toggleEditableSection('content-packing'); togglePackAdd();" style="cursor:pointer;">🎒 준비물<small class="field-hint">(클릭 시 수정/추가)</small></span><button class="sec-toggle" onclick="toggleSection('content-packing', this)">▾</button></div>
       <div class="packing" id="content-packing">
-        <div class="pack-item">
+        <div class="pack-item" data-pack-key="passport">
           <input type="checkbox" class="pack-check" data-key="passport">
-          <span class="pack-label-plain">📘 여권</span>
+          <span class="pack-label-plain" data-edit-id="pack-passport">📘 여권</span>
+          <button class="pack-del" onclick="deletePackItem('passport', this)">✕</button>
         </div>
-        <div class="pack-item">
-          <input type="checkbox" class="pack-check" data-key="skyliner">
-          <a class="pack-label" href="https://file.linktivity.io/voucher/MYREALTRIP-20260821-9RH8/eYIqXsh5kyXFfFy_/mobile.pdf" target="_blank" rel="noopener">🚈 스카이라이너 승차권QR<span class="pack-ic">↗ 열기</span></a>
+        <div class="pack-item" data-pack-key="skyliner2">
+          <input type="checkbox" class="pack-check" data-key="skyliner2">
+          <a class="pack-label" href="https://file.linktivity.io/voucher/MYREALTRIP-20260821-9RH8/eYIqXsh5kyXFfFy_/mobile.pdf" target="_blank" rel="noopener"><span data-edit-id="pack-skyliner">🚈 스카이라이너 승차권QR</span><span class="pack-ic">↗ 열기</span></a>
+          <button class="pack-del" onclick="deletePackItem('skyliner2', this)">✕</button>
         </div>
-        <div class="pack-item">
+        <div class="pack-item" data-pack-key="esim">
           <input type="checkbox" class="pack-check" data-key="esim">
-          <span class="pack-label-plain">📱 E-SIM</span>
+          <span class="pack-label-plain" data-edit-id="pack-esim">📱 E-SIM</span>
+          <button class="pack-del" onclick="deletePackItem('esim', this)">✕</button>
         </div>
-        <div class="pack-item">
+        <div class="pack-item" data-pack-key="insurance">
           <input type="checkbox" class="pack-check" data-key="insurance">
-          <a class="pack-label" href="#" title="여행자보험 바우처 링크 연결 예정">🛡️ 여행자보험<span class="pack-ic">↗ 열기</span></a>
+          <a class="pack-label" href="#" title="여행자보험 바우처 링크 연결 예정"><span data-edit-id="pack-insurance">🛡️ 여행자보험</span><span class="pack-ic">↗ 열기</span></a>
+          <button class="pack-del" onclick="deletePackItem('insurance', this)">✕</button>
         </div>
-        <div class="pack-item">
+        <div class="pack-item" data-pack-key="adapter">
           <input type="checkbox" class="pack-check" data-key="adapter">
-          <span class="pack-label-plain">🔌 어댑터</span>
+          <span class="pack-label-plain" data-edit-id="pack-adapter">🔌 어댑터</span>
+          <button class="pack-del" onclick="deletePackItem('adapter', this)">✕</button>
         </div>
-        <div class="pack-item">
+        <div class="pack-item" data-pack-key="toiletries">
           <input type="checkbox" class="pack-check" data-key="toiletries">
-          <span class="pack-label-plain">🧴 세면도구</span>
+          <span class="pack-label-plain" data-edit-id="pack-toiletries">🧴 세면도구</span>
+          <button class="pack-del" onclick="deletePackItem('toiletries', this)">✕</button>
         </div>
-        <div class="pack-item">
+        <div class="pack-item" data-pack-key="cash">
           <input type="checkbox" class="pack-check" data-key="cash">
-          <span class="pack-label-plain">💴 엔화</span>
+          <span class="pack-label-plain" data-edit-id="pack-cash">💴 엔화</span>
+          <button class="pack-del" onclick="deletePackItem('cash', this)">✕</button>
+        </div>
+        <div id="packCustomList"></div>
+        <div class="pack-add">
+          <input type="text" id="packInput" placeholder="항목 추가">
+          <button onclick="addPackItem()">추가</button>
         </div>
       </div>
     </div>
     <div class="prep-col">
-      <div class="sec-title">🛍️ 구매리스트<button class="sec-toggle" onclick="toggleSection('content-shopping', this)">▾</button></div>
+      <div class="sec-title"><span onclick="toggleShoppingEdit()" style="cursor:pointer;">🛍️ 구매리스트<small class="field-hint">(클릭 시 수정 가능)</small></span><button class="sec-toggle" onclick="toggleSection('content-shopping', this)">▾</button></div>
       <div class="packing" id="content-shopping">
         <div id="shoppingList"></div>
       </div>
     </div>
   </div>
 
-  <div class="sec-title"><span onclick="toggleEditMode()" style="cursor:pointer;">📅 일정</span><button class="sec-toggle" onclick="toggleSection('content-itinerary', this)">▾</button></div>
+  <div class="sec-title"><span onclick="toggleEditMode()" style="cursor:pointer;">📅 일정<small class="field-hint">(클릭 시 수정 가능)</small></span><button class="sec-toggle" onclick="toggleSection('content-itinerary', this)">▾</button></div>
   <div class="board" id="content-itinerary">
 
     <div class="day-card" data-date="2026-09-10">
-      <div class="day-head"><span class="tag">1DAY</span><span class="date">09.10 THU</span></div>
+      <div class="day-head"><span class="day-head-left"><span class="tag" data-edit-id="day1-tag">1DAY</span><button class="route-btn" onclick="openDayRoute('day1')" title="동선 보기">🗺️</button></span><span class="date" data-edit-id="day1-date">09.10 THU</span></div>
       <div class="day-body">
         <div class="ev"><span class="t" data-edit-id="ev-t-1">09:45→12:15</span><span class="d" data-edit-id="ev-dp-1">✈️ 인천공항 출발 → 나리타공항 도착<small>7C1175 · 입국심사·수하물 수령</small></span></div>
         <div class="ev mut"><span class="t" data-edit-id="ev-t-2">체크인</span><span class="d" data-edit-id="ev-dp-2">🏨 센추리온 호텔 우에노</span>
@@ -330,7 +369,7 @@
     </div>
 
     <div class="day-card" data-date="2026-09-11">
-      <div class="day-head"><span class="tag">2DAY</span><span class="date">09.11 FRI</span></div>
+      <div class="day-head"><span class="day-head-left"><span class="tag" data-edit-id="day2-tag">2DAY</span><button class="route-btn" onclick="openDayRoute('day2')" title="동선 보기">🗺️</button></span><span class="date" data-edit-id="day2-date">09.11 FRI</span></div>
       <div class="day-body">
         <div class="ev mut" data-cat="cat-kokyorun" id="ev-cat-kokyorun"><span class="t" contenteditable="true">오전</span><div class="d-split"><span class="d-name" onclick="scrollToCat('cat-kokyorun')">🏃 러닝코스</span><a href="https://blog.naver.com/dhfhqlrnal/224373337310" target="_blank" rel="noopener" class="d-map">↗ 블로그</a></div></div>
         <div class="ev mut" data-cat="cat-azabudai" id="ev-cat-azabudai"><span class="t" data-edit-id="ev-t-6">점심</span><div class="d-split"><span class="d-name" data-edit-id="ev-dname-4" onclick="scrollToCat('cat-azabudai')">🏙️ 아자부다이힐즈</span><a href="https://www.google.com/maps/search/?api=1&query=Azabudai+Hills+Tokyo" target="_blank" rel="noopener" class="d-map">↗ 구글맵</a></div><div class="sub-item added-sub-item" data-name="🍣 스시 아자부"><a href="https://www.google.com/maps/search/?api=1&query=Sushi+Azabu+Azabudai+Hills+Tokyo" target="_blank" rel="noopener" data-edit-id="sub-cat-azabudai-🍣 스시 아자부">스시 아자부</a><button class="remove-btn" onclick="removeFromItinerary('cat-azabudai', '🍣 스시 아자부', this.closest('.sub-item'))">-</button></div><div class="sub-item added-sub-item" data-name="🗼 시바 공원"><a href="https://www.google.com/maps/search/?api=1&query=Shiba+Park+Tokyo" target="_blank" rel="noopener" data-edit-id="sub-cat-azabudai-🗼 시바 공원">시바 공원</a><button class="remove-btn" onclick="removeFromItinerary('cat-azabudai', '🗼 시바 공원', this.closest('.sub-item'))">-</button></div></div>
@@ -342,7 +381,7 @@
     </div>
 
     <div class="day-card" data-date="2026-09-12">
-      <div class="day-head"><span class="tag">3DAY</span><span class="date">09.12 SAT</span></div>
+      <div class="day-head"><span class="day-head-left"><span class="tag" data-edit-id="day3-tag">3DAY</span><button class="route-btn" onclick="openDayRoute('day3')" title="동선 보기">🗺️</button></span><span class="date" data-edit-id="day3-date">09.12 SAT</span></div>
       <div class="day-body">
         <div class="ev mut" data-cat="cat-kichijoji" id="ev-cat-kichijoji"><span class="t" data-edit-id="ev-t-11">점심</span><div class="d-split"><span class="d-name" data-edit-id="ev-dname-9" onclick="scrollToCat('cat-kichijoji')">🍜 키치조지</span><a href="https://www.google.com/maps/search/?api=1&query=Kichijoji+Station+Tokyo" target="_blank" rel="noopener" class="d-map">↗ 구글맵</a></div><div class="sub-item added-sub-item" data-name="🌳 이노카시라공원"><a href="https://www.google.com/maps/search/?api=1&query=Inokashira+Park+Tokyo" target="_blank" rel="noopener" data-edit-id="sub-cat-kichijoji-🌳 이노카시라공원">이노카시라공원</a><button class="remove-btn" onclick="removeFromItinerary('cat-kichijoji', '🌳 이노카시라공원', this.closest('.sub-item'))">-</button></div></div>
         <div class="ev mut" data-cat="cat-omotesando" id="ev-cat-omotesando"><span class="t" data-edit-id="ev-t-12">오후</span><div class="d-split"><span class="d-name" data-edit-id="ev-dname-10" onclick="scrollToCat('cat-omotesando')">🌳 오모테산도</span><a href="https://www.google.com/maps/search/?api=1&query=Omotesando+Station+Tokyo" target="_blank" rel="noopener" class="d-map">↗ 구글맵</a></div></div>
@@ -353,7 +392,7 @@
     </div>
 
     <div class="day-card" data-date="2026-09-13">
-      <div class="day-head"><span class="tag">4DAY</span><span class="date">09.13 SUN</span></div>
+      <div class="day-head"><span class="day-head-left"><span class="tag" data-edit-id="day4-tag">4DAY</span><button class="route-btn" onclick="openDayRoute('day4')" title="동선 보기">🗺️</button></span><span class="date" data-edit-id="day4-date">09.13 SUN</span></div>
       <div class="day-body">
         <div class="ev mut" data-cat="cat-nihombashi" id="ev-cat-nihombashi"><span class="t" data-edit-id="ev-t-16">09:40</span><div class="d-split"><span class="d-name" data-edit-id="ev-dname-14" onclick="scrollToCat('cat-nihombashi')">🍚 니혼바시</span><a href="https://www.google.com/maps/search/?api=1&query=Nihombashi+Station+Tokyo" target="_blank" rel="noopener" class="d-map">↗ 구글맵</a></div><div class="sub-item added-sub-item" data-name="🍚 츠지한 니혼바시 본점"><a href="https://www.google.com/maps/search/?api=1&query=%EC%B8%A0%EC%A7%80%ED%95%9C%20%EB%8B%88%ED%98%BC%EB%B0%94%EC%8B%9C%20%EB%B3%B8%EC%A0%90&query_place_id=ChIJU-JXDf2LGGARHsancfqkHyE" target="_blank" rel="noopener" data-edit-id="sub-cat-nihombashi-🍚 츠지한 니혼바시 본점">츠지한 니혼바시 본점</a><button class="remove-btn" onclick="removeFromItinerary('cat-nihombashi', '🍚 츠지한 니혼바시 본점', this.closest('.sub-item'))">-</button></div></div>
         <div class="ev mut" data-cat="cat-akihabara" id="ev-cat-akihabara"><span class="t" contenteditable="true">오전</span><div class="d-split"><span class="d-name" onclick="scrollToCat('cat-akihabara')">🔌 아키하바라</span><a href="https://www.google.com/maps/search/?api=1&query=Akihabara+Station+Tokyo" target="_blank" rel="noopener" class="d-map">↗ 구글맵</a></div><div class="sub-item added-sub-item" data-name="🎎 애니메이트 아키하바라"><a href="https://www.google.com/maps/place/%EC%95%A0%EB%8B%88%EB%A9%94%EC%9D%B4%ED%8A%B8+%EC%95%84%ED%82%A4%ED%95%98%EB%B0%94%EB%9D%BC/@35.7004944,139.7717427,17z/data=!3m1!4b1!4m6!3m5!1s0x60188c1d96fb5701:0x9276f70f9d512927!8m2!3d35.7004944!4d139.7717427!16s%2Fg%2F1tk8nlb7!18m1!1e1?entry=ttu" target="_blank" rel="noopener" data-edit-id="sub-cat-akihabara-🎎 애니메이트 아키하바라">애니메이트 아키하바라</a><button class="remove-btn" onclick="removeFromItinerary('cat-akihabara', '🎎 애니메이트 아키하바라', this.closest('.sub-item'))">-</button></div></div>
@@ -432,7 +471,7 @@
   <div id="content-regions">
   <div class="area-group" id="cat-yurakucho">
     <div class="area-name-row"><div class="area-name">🏮 유라쿠초</div><select class="day-select" data-cat="cat-yurakucho" onchange="assignCategoryToDay('cat-yurakucho', this.value)"><option value="">일정에 추가</option><option value="day1">1DAY</option><option value="day2">2DAY</option><option value="day3">3DAY</option><option value="day4">4DAY</option></select></div>
-    <div class="area-item-row added"><a class="area-item" href="https://www.google.com/maps/search/?api=1&query=AFURI%20Yurakucho&query_place_id=ChIJz_vNGyGLGGARGYy2JFg_N8Y" target="_blank" rel="noopener">아후리라멘 유라쿠초점</a><span class="added-star">⭐</span><button class="add-btn" data-cat="cat-yurakucho" data-name="🍜 아후리라멘 유라쿠초점" onclick="addToItinerary('cat-yurakucho', '🍜 아후리라멘 유라쿠초점', 'https://www.google.com/maps/search/?api=1&query=AFURI%20Yurakucho&query_place_id=ChIJz_vNGyGLGGARGYy2JFg_N8Y', this)">+</button></div>
+    <div class="area-item-row added"><a class="area-item" href="https://www.google.com/maps/search/?api=1&query=AFURI%20Yurakucho&query_place_id=ChIJz_vNGyGLGGARGYy2JFg_N8Y" target="_blank" rel="noopener"><span>아후리라멘 유라쿠초점<span class="area-time">츠케멘</span></span></a><a class="area-blog" href="https://blog.naver.com/babacco17/223966213026" target="_blank" rel="noopener">↗ 블로그</a><span class="added-star">⭐</span><button class="add-btn" data-cat="cat-yurakucho" data-name="🍜 아후리라멘 유라쿠초점" onclick="addToItinerary('cat-yurakucho', '🍜 아후리라멘 유라쿠초점', 'https://www.google.com/maps/search/?api=1&query=AFURI%20Yurakucho&query_place_id=ChIJz_vNGyGLGGARGYy2JFg_N8Y', this)">+</button></div>
     <div class="area-item-row"><a class="area-item" href="https://www.google.com/maps/search/?api=1&query=Bic+Camera+Yurakucho+Tokyo" target="_blank" rel="noopener">무인양품 · 빅카메라 유라쿠초점</a><button class="add-btn" data-cat="cat-yurakucho" data-name="🛍️ 무인양품 · 빅카메라 유라쿠초점" onclick="addToItinerary('cat-yurakucho', '🛍️ 무인양품 · 빅카메라 유라쿠초점', 'https://www.google.com/maps/search/?api=1&query=Bic+Camera+Yurakucho+Tokyo', this)">+</button></div>
   </div>
   <div class="area-group" id="cat-ginza">
@@ -441,23 +480,31 @@
     <div class="area-item-row added"><a class="area-item" href="https://www.google.com/maps/search/?api=1&query=Kyukyodo+Ginza+Main+Store" target="_blank" rel="noopener">큐쿄토 긴자본점</a><span class="added-star">⭐</span><button class="add-btn" data-cat="cat-ginza" data-name="🕯️ 큐쿄토 긴자본점" onclick="addToItinerary('cat-ginza', '🕯️ 큐쿄토 긴자본점', 'https://www.google.com/maps/search/?api=1&query=Kyukyodo+Ginza+Main+Store', this)">+</button></div>
     <div class="area-item-row added"><a class="area-item" href="https://www.google.com/maps/search/?api=1&query=Dover+Street+Market+Ginza" target="_blank" rel="noopener">도버스트리트마켓 긴자</a><span class="added-star">⭐</span><button class="add-btn" data-cat="cat-ginza" data-name="🕶️ 도버스트리트마켓 긴자" onclick="addToItinerary('cat-ginza', '🕶️ 도버스트리트마켓 긴자', 'https://www.google.com/maps/search/?api=1&query=Dover+Street+Market+Ginza', this)">+</button></div>
     <div class="area-item-row added"><a class="area-item" href="https://www.google.com/maps/search/?api=1&query=GINZA+SIX" target="_blank" rel="noopener">긴자식스</a><span class="added-star">⭐</span><button class="add-btn" data-cat="cat-ginza" data-name="🛍️ 긴자식스" onclick="addToItinerary('cat-ginza', '🛍️ 긴자식스', 'https://www.google.com/maps/search/?api=1&query=GINZA+SIX', this)">+</button></div>
-    <div class="area-item-row added"><a class="area-item" href="https://www.google.com/maps/search/?api=1&query=%EC%9D%B4%EB%A7%88%EC%B9%B4%EC%B8%A0%20%EA%B8%B4%EC%9E%90%EC%A0%90&query_place_id=ChIJ47cjvOCLGGARRTMzIAKnBlw" target="_blank" rel="noopener">이마카츠 긴자점</a><span class="added-star">⭐</span><button class="add-btn" data-cat="cat-ginza" data-name="🍱 이마카츠 긴자점" onclick="addToItinerary('cat-ginza', '🍱 이마카츠 긴자점', 'https://www.google.com/maps/search/?api=1&query=%EC%9D%B4%EB%A7%88%EC%B9%B4%EC%B8%A0%20%EA%B8%B4%EC%9E%90%EC%A0%90&query_place_id=ChIJ47cjvOCLGGARRTMzIAKnBlw', this)">+</button></div>
+    <div class="area-item-row added"><a class="area-item" href="https://www.google.com/maps/search/?api=1&query=%EC%9D%B4%EB%A7%88%EC%B9%B4%EC%B8%A0%20%EA%B8%B4%EC%9E%90%EC%A0%90&query_place_id=ChIJ47cjvOCLGGARRTMzIAKnBlw" target="_blank" rel="noopener"><span>이마카츠 긴자점<span class="area-time">닭안심카츠</span></span></a><a class="area-blog" href="https://blog.naver.com/jieun92623/224352228551" target="_blank" rel="noopener">↗ 블로그</a><span class="added-star">⭐</span><button class="add-btn" data-cat="cat-ginza" data-name="🍱 이마카츠 긴자점" onclick="addToItinerary('cat-ginza', '🍱 이마카츠 긴자점', 'https://www.google.com/maps/search/?api=1&query=%EC%9D%B4%EB%A7%88%EC%B9%B4%EC%B8%A0%20%EA%B8%B4%EC%9E%90%EC%A0%90&query_place_id=ChIJ47cjvOCLGGARRTMzIAKnBlw', this)">+</button></div>
+    <div class="area-item-row"><a class="area-item" href="https://www.google.com/maps/search/?api=1&query=%EA%B3%A0%EB%8B%A4%EC%9D%B4%EB%A9%94%20%ED%95%98%EB%82%98%EC%95%BC%EB%A7%88%EC%9A%B0%EB%8F%99%20%EA%B8%B4%EC%9E%90%EC%A0%90&query_place_id=ChIJ3Q5zleCLGGARnuvHr-FOgMM" target="_blank" rel="noopener"><span>고다이메 히나야마우동<span class="area-time">우동</span></span></a><a class="area-blog" href="https://blog.naver.com/aran922/224298412123" target="_blank" rel="noopener">↗ 블로그</a><button class="add-btn" data-cat="cat-ginza" data-name="🍜 고다이메 히나야마우동" onclick="addToItinerary('cat-ginza', '🍜 고다이메 히나야마우동', 'https://www.google.com/maps/search/?api=1&query=%EA%B3%A0%EB%8B%A4%EC%9D%B4%EB%A9%94%20%ED%95%98%EB%82%98%EC%95%BC%EB%A7%88%EC%9A%B0%EB%8F%99%20%EA%B8%B4%EC%9E%90%EC%A0%90&query_place_id=ChIJ3Q5zleCLGGARnuvHr-FOgMM', this)">+</button></div>
+    <div class="area-item-row"><a class="area-item" href="https://www.google.com/maps/search/?api=1&query=%ED%8C%A1%20%EB%A9%94%EC%A2%85%20%EA%B8%B4%EC%9E%90%EC%A0%90&query_place_id=ChIJ_9oVOZ-LGGARTMN4dW-AI-4" target="_blank" rel="noopener"><span>팡 메종<span class="area-time">소금빵</span></span></a><a class="area-blog" href="https://blog.naver.com/ttachieunji99/224376420272" target="_blank" rel="noopener">↗ 블로그</a><button class="add-btn" data-cat="cat-ginza" data-name="🥐 팡 메종" onclick="addToItinerary('cat-ginza', '🥐 팡 메종', 'https://www.google.com/maps/search/?api=1&query=%ED%8C%A1%20%EB%A9%94%EC%A2%85%20%EA%B8%B4%EC%9E%90%EC%A0%90&query_place_id=ChIJ_9oVOZ-LGGARTMN4dW-AI-4', this)">+</button></div>
+    <div class="area-item-row"><a class="area-item" href="https://www.google.com/maps/search/?api=1&query=%EB%B3%B8%EA%B2%90%20%EC%BB%A4%ED%94%BC%20%EB%8F%84%EC%BF%84%20%EA%B8%B4%EC%9E%90%EC%A0%90&query_place_id=ChIJP2BtW-CLGGAR_-5-Dk9pFoE" target="_blank" rel="noopener"><span>본겐 커피<span class="area-time">라떼 Take out</span></span></a><a class="area-blog" href="https://blog.naver.com/kirico_travel/224384547368" target="_blank" rel="noopener">↗ 블로그</a><button class="add-btn" data-cat="cat-ginza" data-name="☕ 본겐 커피" onclick="addToItinerary('cat-ginza', '☕ 본겐 커피', 'https://www.google.com/maps/search/?api=1&query=%EB%B3%B8%EA%B2%90%20%EC%BB%A4%ED%94%BC%20%EB%8F%84%EC%BF%84%20%EA%B8%B4%EC%9E%90%EC%A0%90&query_place_id=ChIJP2BtW-CLGGAR_-5-Dk9pFoE', this)">+</button></div>
+    <div class="area-item-row"><a class="area-item" href="https://www.google.com/maps/search/?api=1&query=X%20coffee%20GINZA&query_place_id=ChIJn6O0XACLGGARxlbXTWVgLko" target="_blank" rel="noopener"><span>X Coffee<span class="area-time">핸드드립/라떼</span></span></a><a class="area-blog" href="https://blog.naver.com/jjini_0410/224365022802" target="_blank" rel="noopener">↗ 블로그</a><button class="add-btn" data-cat="cat-ginza" data-name="☕ X Coffee" onclick="addToItinerary('cat-ginza', '☕ X Coffee', 'https://www.google.com/maps/search/?api=1&query=X%20coffee%20GINZA&query_place_id=ChIJn6O0XACLGGARxlbXTWVgLko', this)">+</button></div>
   </div>
   <div class="area-group" id="cat-tokyo">
     <div class="area-name-row"><div class="area-name">🏛️ 도쿄역</div><select class="day-select" data-cat="cat-tokyo" onchange="assignCategoryToDay('cat-tokyo', this.value)"><option value="">일정에 추가</option><option value="day1">1DAY</option><option value="day2">2DAY</option><option value="day3">3DAY</option><option value="day4">4DAY</option></select></div>
     <div class="area-item-row added"><a class="area-item" href="https://www.google.com/maps/search/?api=1&query=Tokyo+Character+Street" target="_blank" rel="noopener">캐릭터스트리트</a><span class="added-star">⭐</span><button class="add-btn" data-cat="cat-tokyo" data-name="🎎 캐릭터스트리트" onclick="addToItinerary('cat-tokyo', '🎎 캐릭터스트리트', 'https://www.google.com/maps/search/?api=1&query=Tokyo+Character+Street', this)">+</button></div>
     <div class="area-item-row added"><a class="area-item" href="https://www.google.com/maps/search/?api=1&query=KITTE+Marunouchi+Tokyo" target="_blank" rel="noopener"><span>킷테 쇼핑몰</span></a><span class="added-star">⭐</span><button class="add-btn" data-cat="cat-tokyo" data-name="🛍️ 킷테 쇼핑몰" onclick="addToItinerary('cat-tokyo', '🛍️ 킷테 쇼핑몰', 'https://www.google.com/maps/search/?api=1&query=KITTE+Marunouchi+Tokyo', this)">+</button></div>
     <div class="area-item-row added"><a class="area-item" href="https://www.google.com/maps/search/?api=1&query=Marunouchi+Ekimae+Plaza+Tokyo+Station" target="_blank" rel="noopener"><span>마루노우치 광장</span></a><span class="added-star">⭐</span><button class="add-btn" data-cat="cat-tokyo" data-name="🏛️ 마루노우치 광장" onclick="addToItinerary('cat-tokyo', '🏛️ 마루노우치 광장', 'https://www.google.com/maps/search/?api=1&query=Marunouchi+Ekimae+Plaza+Tokyo+Station', this)">+</button></div>
+    <div class="area-item-row"><a class="area-item" href="https://www.google.com/maps/search/?api=1&query=Marunouchi+Tsutaya+Starbucks+Tokyo" target="_blank" rel="noopener"><span>마루노우치 츠타야 스타벅스<span class="area-time">카페</span></span></a><a class="area-blog" href="https://cafe.naver.com/jpnstory/4012754?art=ZXh0ZXJuYWwtc2VydmljZS1uYXZlci1zZWFyY2gtY2FmZS1wcg.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjYWZlVHlwZSI6IkNBRkVfVVJMIiwiY2FmZVVybCI6ImpwbnN0b3J5IiwiYXJ0aWNsZUlkIjo0MDEyNzU0LCJpc3N1ZWRBdCI6MTc4NzYyMDM5NDQ4NH0.HmdDMUublD-KwAAdkm3Eb4bdm-yEDcVexnJXROgK3oI" target="_blank" rel="noopener">↗ 블로그</a><button class="add-btn" data-cat="cat-tokyo" data-name="☕ 마루노우치 츠타야 스타벅스" onclick="addToItinerary('cat-tokyo', '☕ 마루노우치 츠타야 스타벅스', 'https://www.google.com/maps/search/?api=1&query=Marunouchi+Tsutaya+Starbucks+Tokyo', this)">+</button></div>
   </div>
   <div class="area-group" id="cat-azabudai">
     <div class="area-name-row"><div class="area-name">🏙️ 아자부다이힐즈</div><select class="day-select" data-cat="cat-azabudai" onchange="assignCategoryToDay('cat-azabudai', this.value)"><option value="">일정에 추가</option><option value="day1">1DAY</option><option value="day2">2DAY</option><option value="day3">3DAY</option><option value="day4">4DAY</option></select></div>
-    <div class="area-item-row added"><a class="area-item" href="https://www.google.com/maps/search/?api=1&query=Sushi+Azabu+Azabudai+Hills+Tokyo" target="_blank" rel="noopener"><span>스시 아자부</span></a><span class="added-star">⭐</span><button class="add-btn" data-cat="cat-azabudai" data-name="🍣 스시 아자부" onclick="addToItinerary('cat-azabudai', '🍣 스시 아자부', 'https://www.google.com/maps/search/?api=1&query=Sushi+Azabu+Azabudai+Hills+Tokyo', this)">+</button></div>
+    <div class="area-item-row added"><a class="area-item" href="https://www.google.com/maps/search/?api=1&query=Sushi+Azabu+Azabudai+Hills+Tokyo" target="_blank" rel="noopener"><span>스시 아자부<span class="area-time">스시</span></span></a><a class="area-blog" href="https://blog.naver.com/tokyomate/224231680463" target="_blank" rel="noopener">↗ 블로그</a><span class="added-star">⭐</span><button class="add-btn" data-cat="cat-azabudai" data-name="🍣 스시 아자부" onclick="addToItinerary('cat-azabudai', '🍣 스시 아자부', 'https://www.google.com/maps/search/?api=1&query=Sushi+Azabu+Azabudai+Hills+Tokyo', this)">+</button></div>
     <div class="area-item-row added"><a class="area-item" href="https://www.google.com/maps/search/?api=1&query=Shiba+Park+Tokyo" target="_blank" rel="noopener">시바 공원</a><span class="added-star">⭐</span><button class="add-btn" data-cat="cat-azabudai" data-name="🗼 시바 공원" onclick="addToItinerary('cat-azabudai', '🗼 시바 공원', 'https://www.google.com/maps/search/?api=1&query=Shiba+Park+Tokyo', this)">+</button></div>
   </div>
   <div class="area-group" id="cat-nakameguro">
     <div class="area-name-row"><div class="area-name">🌉 나카메구로</div><select class="day-select" data-cat="cat-nakameguro" onchange="assignCategoryToDay('cat-nakameguro', this.value)"><option value="">일정에 추가</option><option value="day1">1DAY</option><option value="day2">2DAY</option><option value="day3">3DAY</option><option value="day4">4DAY</option></select></div>
-    <div class="area-item-row added"><a class="area-item" href="https://www.google.com/maps/search/?api=1&query=%ED%86%A0%EB%A6%AC%EA%B3%A0&query_place_id=ChIJDeCf_SaLGGARFpSAFSh9J5Q" target="_blank" rel="noopener"><span>토리고</span></a><span class="added-star">⭐</span><button class="add-btn" data-cat="cat-nakameguro" data-name="🍢 토리고" onclick="addToItinerary('cat-nakameguro', '🍢 토리고', 'https://www.google.com/maps/search/?api=1&query=%ED%86%A0%EB%A6%AC%EA%B3%A0&query_place_id=ChIJDeCf_SaLGGARFpSAFSh9J5Q', this)">+</button></div>
+    <div class="area-item-row added"><a class="area-item" href="https://www.google.com/maps/search/?api=1&query=%ED%86%A0%EB%A6%AC%EA%B3%A0&query_place_id=ChIJDeCf_SaLGGARFpSAFSh9J5Q" target="_blank" rel="noopener"><span>토리고<span class="area-time">야키토리</span></span></a><a class="area-blog" href="https://blog.naver.com/happinooppi/224377803527" target="_blank" rel="noopener">↗ 블로그</a><span class="added-star">⭐</span><button class="add-btn" data-cat="cat-nakameguro" data-name="🍢 토리고" onclick="addToItinerary('cat-nakameguro', '🍢 토리고', 'https://www.google.com/maps/search/?api=1&query=%ED%86%A0%EB%A6%AC%EA%B3%A0&query_place_id=ChIJDeCf_SaLGGARFpSAFSh9J5Q', this)">+</button></div>
     <div class="area-item-row"><a class="area-item" href="https://www.google.com/maps/search/?api=1&query=KINTO+STORE+Tokyo+Nakameguro" target="_blank" rel="noopener"><span>킨토 KINTO</span></a><button class="add-btn" data-cat="cat-nakameguro" data-name="☕ 킨토 KINTO" onclick="addToItinerary('cat-nakameguro', '☕ 킨토 KINTO', 'https://www.google.com/maps/search/?api=1&query=KINTO+STORE+Tokyo+Nakameguro', this)">+</button></div>
+    <div class="area-item-row"><a class="area-item" href="https://www.google.com/maps/search/?api=1&query=AFURI+Nakameguro" target="_blank" rel="noopener"><span>아후리라멘 나카메구로점<span class="area-time">츠케멘</span></span></a><a class="area-blog" href="https://blog.naver.com/happily_152/224315703657" target="_blank" rel="noopener">↗ 블로그</a><button class="add-btn" data-cat="cat-nakameguro" data-name="🍜 아후리라멘 나카메구로점" onclick="addToItinerary('cat-nakameguro', '🍜 아후리라멘 나카메구로점', 'https://www.google.com/maps/search/?api=1&query=AFURI+Nakameguro', this)">+</button></div>
+    <div class="area-item-row"><a class="area-item" href="https://www.google.com/maps/search/?api=1&query=Starbucks+Reserve+Roastery+Tokyo" target="_blank" rel="noopener"><span>스타벅스 리저브 로스터리 도쿄<span class="area-time">카페</span></span></a><a class="area-blog" href="https://blog.naver.com/i_aroana/224366047757" target="_blank" rel="noopener">↗ 블로그</a><button class="add-btn" data-cat="cat-nakameguro" data-name="☕ 스타벅스 리저브 로스터리 도쿄" onclick="addToItinerary('cat-nakameguro', '☕ 스타벅스 리저브 로스터리 도쿄', 'https://www.google.com/maps/search/?api=1&query=Starbucks+Reserve+Roastery+Tokyo', this)">+</button></div>
+    <div class="area-item-row"><a class="area-item" href="https://www.google.com/maps/search/?api=1&query=SIDEWALK+STAND+Nakameguro" target="_blank" rel="noopener"><span>사이드워크스탠드<span class="area-time">라떼 Take out</span></span></a><a class="area-blog" href="https://blog.naver.com/gdlkbhp2025/224331047524" target="_blank" rel="noopener">↗ 블로그</a><button class="add-btn" data-cat="cat-nakameguro" data-name="☕ 사이드워크스탠드" onclick="addToItinerary('cat-nakameguro', '☕ 사이드워크스탠드', 'https://www.google.com/maps/search/?api=1&query=SIDEWALK+STAND+Nakameguro', this)">+</button></div>
   </div>
   <div class="area-group" id="cat-daikanyama">
     <div class="area-name-row"><div class="area-name">☕ 다이칸야마</div><select class="day-select" data-cat="cat-daikanyama" onchange="assignCategoryToDay('cat-daikanyama', this.value)"><option value="">일정에 추가</option><option value="day1">1DAY</option><option value="day2">2DAY</option><option value="day3">3DAY</option><option value="day4">4DAY</option></select></div>
@@ -469,17 +516,17 @@
   </div>
   <div class="area-group" id="cat-kichijoji">
     <div class="area-name-row"><div class="area-name">🍜 키치조지</div><select class="day-select" data-cat="cat-kichijoji" onchange="assignCategoryToDay('cat-kichijoji', this.value)"><option value="">일정에 추가</option><option value="day1">1DAY</option><option value="day2">2DAY</option><option value="day3">3DAY</option><option value="day4">4DAY</option></select></div>
-    <div class="area-item-row"><a class="area-item" href="https://www.google.com/maps/search/?api=1&query=Uchoku+Kichijoji+Tokyo" target="_blank" rel="noopener"><span>우초쿠</span></a><button class="add-btn" data-cat="cat-kichijoji" data-name="🍜 우초쿠" onclick="addToItinerary('cat-kichijoji', '🍜 우초쿠', 'https://www.google.com/maps/search/?api=1&query=Uchoku+Kichijoji+Tokyo', this)">+</button></div>
+    <div class="area-item-row"><a class="area-item" href="https://www.google.com/maps/search/?api=1&query=Uchoku+Kichijoji+Tokyo" target="_blank" rel="noopener"><span>우초쿠<span class="area-time">츠케멘</span></span></a><a class="area-blog" href="https://blog.naver.com/hyozoni/224312999312" target="_blank" rel="noopener">↗ 블로그</a><button class="add-btn" data-cat="cat-kichijoji" data-name="🍜 우초쿠" onclick="addToItinerary('cat-kichijoji', '🍜 우초쿠', 'https://www.google.com/maps/search/?api=1&query=Uchoku+Kichijoji+Tokyo', this)">+</button></div>
     <div class="area-item-row added"><a class="area-item" href="https://www.google.com/maps/search/?api=1&query=Inokashira+Park+Tokyo" target="_blank" rel="noopener"><span>이노카시라공원</span></a><span class="added-star">⭐</span><button class="add-btn" data-cat="cat-kichijoji" data-name="🌳 이노카시라공원" onclick="addToItinerary('cat-kichijoji', '🌳 이노카시라공원', 'https://www.google.com/maps/search/?api=1&query=Inokashira+Park+Tokyo', this)">+</button></div>
   </div>
   <div class="area-group" id="cat-shinjuku">
     <div class="area-name-row"><div class="area-name">🌃 신주쿠</div><select class="day-select" data-cat="cat-shinjuku" onchange="assignCategoryToDay('cat-shinjuku', this.value)"><option value="">일정에 추가</option><option value="day1">1DAY</option><option value="day2">2DAY</option><option value="day3">3DAY</option><option value="day4">4DAY</option></select></div>
-    <div class="area-item-row added"><a class="area-item" href="https://www.google.com/maps/search/?api=1&query=%EC%8B%A0%EC%A3%BC%EC%BF%A0%EC%95%BC%ED%82%A4%EB%8B%88%EC%BF%A0%20%EA%B7%9C%ED%83%84%EB%85%B8%EB%A0%88%EB%AA%AC%20%EC%B4%9D%EB%B3%B8%EC%A0%90&query_place_id=ChIJVTIOxCmNGGARCFoKYM32SAE" target="_blank" rel="noopener"><span>신주쿠야키니쿠 큐탄노레몬 총본점</span></a><span class="added-star">⭐</span><button class="add-btn" data-cat="cat-shinjuku" data-name="🍖 신주쿠야키니쿠 큐탄노레몬 총본점" onclick="addToItinerary('cat-shinjuku', '🍖 신주쿠야키니쿠 큐탄노레몬 총본점', 'https://www.google.com/maps/search/?api=1&query=%EC%8B%A0%EC%A3%BC%EC%BF%A0%EC%95%BC%ED%82%A4%EB%8B%88%EC%BF%A0%20%EA%B7%9C%ED%83%84%EB%85%B8%EB%A0%88%EB%AA%AC%20%EC%B4%9D%EB%B3%B8%EC%A0%90&query_place_id=ChIJVTIOxCmNGGARCFoKYM32SAE', this)">+</button></div>
+    <div class="area-item-row added"><a class="area-item" href="https://www.google.com/maps/search/?api=1&query=%EC%8B%A0%EC%A3%BC%EC%BF%A0%EC%95%BC%ED%82%A4%EB%8B%88%EC%BF%A0%20%EA%B7%9C%ED%83%84%EB%85%B8%EB%A0%88%EB%AA%AC%20%EC%B4%9D%EB%B3%B8%EC%A0%90&query_place_id=ChIJVTIOxCmNGGARCFoKYM32SAE" target="_blank" rel="noopener"><span>신주쿠야키니쿠 큐탄노레몬 총본점</span></a><a class="area-blog" href="https://blog.naver.com/hy_corporation/224366092518" target="_blank" rel="noopener">↗ 블로그</a><span class="added-star">⭐</span><button class="add-btn" data-cat="cat-shinjuku" data-name="🍖 신주쿠야키니쿠 큐탄노레몬 총본점" onclick="addToItinerary('cat-shinjuku', '🍖 신주쿠야키니쿠 큐탄노레몬 총본점', 'https://www.google.com/maps/search/?api=1&query=%EC%8B%A0%EC%A3%BC%EC%BF%A0%EC%95%BC%ED%82%A4%EB%8B%88%EC%BF%A0%20%EA%B7%9C%ED%83%84%EB%85%B8%EB%A0%88%EB%AA%AC%20%EC%B4%9D%EB%B3%B8%EC%A0%90&query_place_id=ChIJVTIOxCmNGGARCFoKYM32SAE', this)">+</button></div>
   </div>
   <div class="area-group" id="cat-harajuku">
     <div class="area-name-row"><div class="area-name">🎀 하라주쿠</div><select class="day-select" data-cat="cat-harajuku" onchange="assignCategoryToDay('cat-harajuku', this.value)"><option value="">일정에 추가</option><option value="day1">1DAY</option><option value="day2">2DAY</option><option value="day3">3DAY</option><option value="day4">4DAY</option></select></div>
     <div class="area-item-row"><a class="area-item" href="https://www.google.com/maps/search/?api=1&query=Tokyu+Plaza+Omotesando+Harajuku" target="_blank" rel="noopener"><span>도큐플라자</span></a><button class="add-btn" data-cat="cat-harajuku" data-name="🏢 도큐플라자" onclick="addToItinerary('cat-harajuku', '🏢 도큐플라자', 'https://www.google.com/maps/search/?api=1&query=Tokyu+Plaza+Omotesando+Harajuku', this)">+</button></div>
-    <div class="area-item-row"><a class="area-item" href="https://www.google.com/maps/search/?api=1&query=Red+Rock+Harajuku" target="_blank" rel="noopener"><span>레드락 하라주쿠점</span></a><button class="add-btn" data-cat="cat-harajuku" data-name="🥩 레드락 하라주쿠점" onclick="addToItinerary('cat-harajuku', '🥩 레드락 하라주쿠점', 'https://www.google.com/maps/search/?api=1&query=Red+Rock+Harajuku', this)">+</button></div>
+    <div class="area-item-row"><a class="area-item" href="https://www.google.com/maps/search/?api=1&query=Red+Rock+Harajuku" target="_blank" rel="noopener"><span>레드락 하라주쿠점<span class="area-time">고기덮밥</span></span></a><a class="area-blog" href="https://blog.naver.com/ringaringa21/224386726440" target="_blank" rel="noopener">↗ 블로그</a><button class="add-btn" data-cat="cat-harajuku" data-name="🥩 레드락 하라주쿠점" onclick="addToItinerary('cat-harajuku', '🥩 레드락 하라주쿠점', 'https://www.google.com/maps/search/?api=1&query=Red+Rock+Harajuku', this)">+</button></div>
   </div>
   <div class="area-group" id="cat-omotesando">
     <div class="area-name-row"><div class="area-name">🌳 오모테산도</div><select class="day-select" data-cat="cat-omotesando" onchange="assignCategoryToDay('cat-omotesando', this.value)"><option value="">일정에 추가</option><option value="day1">1DAY</option><option value="day2">2DAY</option><option value="day3">3DAY</option><option value="day4">4DAY</option></select></div>
@@ -495,6 +542,10 @@
     <div class="area-name-row"><div class="area-name">🏛️ 롯폰기</div><select class="day-select" data-cat="cat-roppongi" onchange="assignCategoryToDay('cat-roppongi', this.value)"><option value="">일정에 추가</option><option value="day1">1DAY</option><option value="day2">2DAY</option><option value="day3">3DAY</option><option value="day4">4DAY</option></select></div>
     <div class="area-item-row"><a class="area-item" href="https://www.google.com/maps/search/?api=1&query=The+National+Art+Center+Tokyo" target="_blank" rel="noopener"><span>국립신미술관</span></a><button class="add-btn" data-cat="cat-roppongi" data-name="🏛️ 국립신미술관" onclick="addToItinerary('cat-roppongi', '🏛️ 국립신미술관', 'https://www.google.com/maps/search/?api=1&query=The+National+Art+Center+Tokyo', this)">+</button></div>
     <div class="area-item-row"><a class="area-item" href="https://www.google.com/maps/search/?api=1&query=Roppongi+Hills+Mori+Tower" target="_blank" rel="noopener"><span>롯폰기힐즈</span></a><button class="add-btn" data-cat="cat-roppongi" data-name="🏙️ 롯폰기힐즈" onclick="addToItinerary('cat-roppongi', '🏙️ 롯폰기힐즈', 'https://www.google.com/maps/search/?api=1&query=Roppongi+Hills+Mori+Tower', this)">+</button></div>
+    <div class="area-item-row"><a class="area-item" href="https://www.google.com/maps/search/?api=1&query=Imakatsu+Roppongi" target="_blank" rel="noopener"><span>이마카츠 롯폰기점<span class="area-time">닭안심카츠</span></span></a><a class="area-blog" href="https://blog.naver.com/yulee410/224350536436" target="_blank" rel="noopener">↗ 블로그</a><button class="add-btn" data-cat="cat-roppongi" data-name="🍱 이마카츠 롯폰기점" onclick="addToItinerary('cat-roppongi', '🍱 이마카츠 롯폰기점', 'https://www.google.com/maps/search/?api=1&query=Imakatsu+Roppongi', this)">+</button></div>
+    <div class="area-item-row"><a class="area-item" href="https://www.google.com/maps/search/?api=1&query=AFURI+Roppongi" target="_blank" rel="noopener"><span>아후리라멘 롯폰기점<span class="area-time">츠케멘</span></span></a><a class="area-blog" href="https://blog.naver.com/mortareg/223980649922" target="_blank" rel="noopener">↗ 블로그</a><button class="add-btn" data-cat="cat-roppongi" data-name="🍜 아후리라멘 롯폰기점" onclick="addToItinerary('cat-roppongi', '🍜 아후리라멘 롯폰기점', 'https://www.google.com/maps/search/?api=1&query=AFURI+Roppongi', this)">+</button></div>
+    <div class="area-item-row"><a class="area-item" href="https://www.google.com/maps/search/?api=1&query=%EC%82%AC%ED%91%B8&query_place_id=ChIJry9lZdaLGGARrSf5KFOaLqk" target="_blank" rel="noopener"><span>사푸<span class="area-time">카페</span></span></a><a class="area-blog" href="https://blog.naver.com/wjdalswn46/224382263644" target="_blank" rel="noopener">↗ 블로그</a><button class="add-btn" data-cat="cat-roppongi" data-name="☕ 사푸" onclick="addToItinerary('cat-roppongi', '☕ 사푸', 'https://www.google.com/maps/search/?api=1&query=%EC%82%AC%ED%91%B8&query_place_id=ChIJry9lZdaLGGARrSf5KFOaLqk', this)">+</button></div>
+    <div class="area-item-row"><a class="area-item" href="https://www.google.com/maps/search/?api=1&query=%EB%B2%8C%EB%B8%8C%20%EC%BB%A4%ED%94%BC%20%EB%A1%9C%EC%8A%A4%ED%84%B0%EC%A6%88%20%EB%A1%AF%ED%8F%B0%EA%B8%B0&query_place_id=ChIJg36gYPSLGGARlTI1efR23YQ" target="_blank" rel="noopener"><span>VERVE COFFEE<span class="area-time">카페</span></span></a><a class="area-blog" href="https://blog.naver.com/sofie0119/224235243861" target="_blank" rel="noopener">↗ 블로그</a><button class="add-btn" data-cat="cat-roppongi" data-name="☕ VERVE COFFEE" onclick="addToItinerary('cat-roppongi', '☕ VERVE COFFEE', 'https://www.google.com/maps/search/?api=1&query=%EB%B2%8C%EB%B8%8C%20%EC%BB%A4%ED%94%BC%20%EB%A1%9C%EC%8A%A4%ED%84%B0%EC%A6%88%20%EB%A1%AF%ED%8F%B0%EA%B8%B0&query_place_id=ChIJg36gYPSLGGARlTI1efR23YQ', this)">+</button></div>
   </div>
   <div class="area-group" id="cat-nishiazabu">
     <div class="area-name-row"><div class="area-name">🏮 니시아자부</div><select class="day-select" data-cat="cat-nishiazabu" onchange="assignCategoryToDay('cat-nishiazabu', this.value)"><option value="">일정에 추가</option><option value="day1">1DAY</option><option value="day2">2DAY</option><option value="day3">3DAY</option><option value="day4">4DAY</option></select></div>
@@ -502,18 +553,22 @@
   </div>
   <div class="area-group" id="cat-nihombashi">
     <div class="area-name-row"><div class="area-name">🍚 니혼바시</div><select class="day-select" data-cat="cat-nihombashi" onchange="assignCategoryToDay('cat-nihombashi', this.value)"><option value="">일정에 추가</option><option value="day1">1DAY</option><option value="day2">2DAY</option><option value="day3">3DAY</option><option value="day4">4DAY</option></select></div>
-    <div class="area-item-row added"><a class="area-item" href="https://www.google.com/maps/search/?api=1&query=%EC%B8%A0%EC%A7%80%ED%95%9C%20%EB%8B%88%ED%98%BC%EB%B0%94%EC%8B%9C%20%EB%B3%B8%EC%A0%90&query_place_id=ChIJU-JXDf2LGGARHsancfqkHyE" target="_blank" rel="noopener"><span>츠지한 니혼바시 본점</span></a><span class="added-star">⭐</span><button class="add-btn" data-cat="cat-nihombashi" data-name="🍚 츠지한 니혼바시 본점" onclick="addToItinerary('cat-nihombashi', '🍚 츠지한 니혼바시 본점', 'https://www.google.com/maps/search/?api=1&query=%EC%B8%A0%EC%A7%80%ED%95%9C%20%EB%8B%88%ED%98%BC%EB%B0%94%EC%8B%9C%20%EB%B3%B8%EC%A0%90&query_place_id=ChIJU-JXDf2LGGARHsancfqkHyE', this)">+</button></div>
+    <div class="area-item-row added"><a class="area-item" href="https://www.google.com/maps/search/?api=1&query=%EC%B8%A0%EC%A7%80%ED%95%9C%20%EB%8B%88%ED%98%BC%EB%B0%94%EC%8B%9C%20%EB%B3%B8%EC%A0%90&query_place_id=ChIJU-JXDf2LGGARHsancfqkHyE" target="_blank" rel="noopener"><span>츠지한 니혼바시 본점<span class="area-time">카이센동</span></span></a><a class="area-blog" href="https://blog.naver.com/callaopals/224378988266" target="_blank" rel="noopener">↗ 블로그</a><span class="added-star">⭐</span><button class="add-btn" data-cat="cat-nihombashi" data-name="🍚 츠지한 니혼바시 본점" onclick="addToItinerary('cat-nihombashi', '🍚 츠지한 니혼바시 본점', 'https://www.google.com/maps/search/?api=1&query=%EC%B8%A0%EC%A7%80%ED%95%9C%20%EB%8B%88%ED%98%BC%EB%B0%94%EC%8B%9C%20%EB%B3%B8%EC%A0%90&query_place_id=ChIJU-JXDf2LGGARHsancfqkHyE', this)">+</button></div>
   </div>
   <div class="area-group" id="cat-ueno">
     <div class="area-name-row"><div class="area-name">🐼 우에노</div><select class="day-select" data-cat="cat-ueno" onchange="assignCategoryToDay('cat-ueno', this.value)"><option value="">일정에 추가</option><option value="day1">1DAY</option><option value="day2">2DAY</option><option value="day3">3DAY</option><option value="day4">4DAY</option></select></div>
     <div class="area-item-row added"><a class="area-item" href="https://www.google.com/maps/search/?api=1&query=Ueno+Park+Tokyo" target="_blank" rel="noopener"><span>우에노공원</span></a><span class="added-star">⭐</span><button class="add-btn" data-cat="cat-ueno" data-name="🌳 우에노공원" onclick="addToItinerary('cat-ueno', '🌳 우에노공원', 'https://www.google.com/maps/search/?api=1&query=Ueno+Park+Tokyo', this)">+</button></div>
     <div class="area-item-row"><a class="area-item" href="https://www.google.com/maps/search/?api=1&query=Don+Quijote+Ueno+Tokyo" target="_blank" rel="noopener"><span>돈키호테 우에노점</span></a><button class="add-btn" data-cat="cat-ueno" data-name="🛒 돈키호테 우에노점" onclick="addToItinerary('cat-ueno', '🛒 돈키호테 우에노점', 'https://www.google.com/maps/search/?api=1&query=Don+Quijote+Ueno+Tokyo', this)">+</button></div>
-    <div class="area-item-row"><a class="area-item" href="https://www.google.com/maps/search/?api=1&query=Tsukishima+Monja+Moheji+Ueno" target="_blank" rel="noopener"><span>츠키시마 몬자 모헤지 우에노점</span></a><button class="add-btn" data-cat="cat-ueno" data-name="🍳 츠키시마 몬자 모헤지 우에노점" onclick="addToItinerary('cat-ueno', '🍳 츠키시마 몬자 모헤지 우에노점', 'https://www.google.com/maps/search/?api=1&query=Tsukishima+Monja+Moheji+Ueno', this)">+</button></div>
-    <div class="area-item-row"><a class="area-item" href="https://www.google.com/maps/place/Yakitori+Torisho+Honten/@35.7098438,139.7768433,17z/data=!3m1!4b1!4m6!3m5!1s0x60188e9f3f84c443:0x8af847de83c1fde3!8m2!3d35.7098438!4d139.7768433!16s%2Fg%2F11cjk35j_9?entry=ttu" target="_blank" rel="noopener"><span>야키토리 토리쇼 혼텐</span></a><button class="add-btn" data-cat="cat-ueno" data-name="🍢 야키토리 토리쇼 혼텐" onclick="addToItinerary('cat-ueno', '🍢 야키토리 토리쇼 혼텐', 'https://www.google.com/maps/place/Yakitori+Torisho+Honten/@35.7098438,139.7768433,17z/data=!3m1!4b1!4m6!3m5!1s0x60188e9f3f84c443:0x8af847de83c1fde3!8m2!3d35.7098438!4d139.7768433!16s%2Fg%2F11cjk35j_9?entry=ttu', this)">+</button></div>
+    <div class="area-item-row"><a class="area-item" href="https://www.google.com/maps/search/?api=1&query=Ameyoko+Shopping+Street+Ueno+Tokyo" target="_blank" rel="noopener"><span>아메요코 상점가</span></a><button class="add-btn" data-cat="cat-ueno" data-name="🏮 아메요코 상점가" onclick="addToItinerary('cat-ueno', '🏮 아메요코 상점가', 'https://www.google.com/maps/search/?api=1&query=Ameyoko+Shopping+Street+Ueno+Tokyo', this)">+</button></div>
+    <div class="area-item-row"><a class="area-item" href="https://www.google.com/maps/search/?api=1&query=Tsukishima+Monja+Moheji+Ueno" target="_blank" rel="noopener"><span>츠키시마 몬자 모헤지 우에노점<span class="area-time">몬자야끼</span></span></a><a class="area-blog" href="https://blog.naver.com/jung-yo/224388816524" target="_blank" rel="noopener">↗ 블로그</a><button class="add-btn" data-cat="cat-ueno" data-name="🍳 츠키시마 몬자 모헤지 우에노점" onclick="addToItinerary('cat-ueno', '🍳 츠키시마 몬자 모헤지 우에노점', 'https://www.google.com/maps/search/?api=1&query=Tsukishima+Monja+Moheji+Ueno', this)">+</button></div>
+    <div class="area-item-row"><a class="area-item" href="https://www.google.com/maps/place/Yakitori+Torisho+Honten/@35.7098438,139.7768433,17z/data=!3m1!4b1!4m6!3m5!1s0x60188e9f3f84c443:0x8af847de83c1fde3!8m2!3d35.7098438!4d139.7768433!16s%2Fg%2F11cjk35j_9?entry=ttu" target="_blank" rel="noopener"><span>야키토리 토리쇼 혼텐<span class="area-time">야키토리</span></span></a><a class="area-blog" href="https://blog.naver.com/cs4549/224377745521" target="_blank" rel="noopener">↗ 블로그</a><button class="add-btn" data-cat="cat-ueno" data-name="🍢 야키토리 토리쇼 혼텐" onclick="addToItinerary('cat-ueno', '🍢 야키토리 토리쇼 혼텐', 'https://www.google.com/maps/place/Yakitori+Torisho+Honten/@35.7098438,139.7768433,17z/data=!3m1!4b1!4m6!3m5!1s0x60188e9f3f84c443:0x8af847de83c1fde3!8m2!3d35.7098438!4d139.7768433!16s%2Fg%2F11cjk35j_9?entry=ttu', this)">+</button></div>
+    <div class="area-item-row"><a class="area-item" href="https://www.google.com/maps/search/?api=1&query=%EB%9D%BC%EB%A9%98%20%EC%B9%B4%EB%AA%A8%ED%86%A0%EB%84%A4%EA%B8%B0%20%EC%9A%B0%EC%97%90%EB%85%B8%20%EC%98%A4%EC%B9%B4%EC%B9%98%EB%A7%88%EC%B9%98%20%EB%B3%B8%EC%A0%90&query_place_id=ChIJ6-Rvg5-OGGAR99AELnNenOU" target="_blank" rel="noopener"><span>라멘 카모토네기<span class="area-time">오리라멘</span></span></a><a class="area-blog" href="https://blog.naver.com/yesruns/224377597042" target="_blank" rel="noopener">↗ 블로그</a><button class="add-btn" data-cat="cat-ueno" data-name="🍜 라멘 카모토네기" onclick="addToItinerary('cat-ueno', '🍜 라멘 카모토네기', 'https://www.google.com/maps/search/?api=1&query=%EB%9D%BC%EB%A9%98%20%EC%B9%B4%EB%AA%A8%ED%86%A0%EB%84%A4%EA%B8%B0%20%EC%9A%B0%EC%97%90%EB%85%B8%20%EC%98%A4%EC%B9%B4%EC%B9%98%EB%A7%88%EC%B9%98%20%EB%B3%B8%EC%A0%90&query_place_id=ChIJ6-Rvg5-OGGAR99AELnNenOU', this)">+</button></div>
+    <div class="area-item-row"><a class="area-item" href="https://www.google.com/maps/search/?api=1&query=Gyukatsu+Motomura+Ueno+Tokyo" target="_blank" rel="noopener"><span>규카츠 모토무라<span class="area-time">규카츠</span></span></a><a class="area-blog" href="https://blog.naver.com/ilove-uni/224367769237" target="_blank" rel="noopener">↗ 블로그</a><button class="add-btn" data-cat="cat-ueno" data-name="🥩 규카츠 모토무라" onclick="addToItinerary('cat-ueno', '🥩 규카츠 모토무라', 'https://www.google.com/maps/search/?api=1&query=Gyukatsu+Motomura+Ueno+Tokyo', this)">+</button></div>
   </div>
   <div class="area-group" id="cat-akihabara">
     <div class="area-name-row"><div class="area-name">🔌 아키하바라</div><select class="day-select" data-cat="cat-akihabara" onchange="assignCategoryToDay('cat-akihabara', this.value)"><option value="">일정에 추가</option><option value="day1">1DAY</option><option value="day2">2DAY</option><option value="day3">3DAY</option><option value="day4">4DAY</option></select></div>
     <div class="area-item-row added"><a class="area-item" href="https://www.google.com/maps/place/%EC%95%A0%EB%8B%88%EB%A9%94%EC%9D%B4%ED%8A%B8+%EC%95%84%ED%82%A4%ED%95%98%EB%B0%94%EB%9D%BC/@35.7004944,139.7717427,17z/data=!3m1!4b1!4m6!3m5!1s0x60188c1d96fb5701:0x9276f70f9d512927!8m2!3d35.7004944!4d139.7717427!16s%2Fg%2F1tk8nlb7!18m1!1e1?entry=ttu" target="_blank" rel="noopener"><span>애니메이트 아키하바라</span></a><span class="added-star">⭐</span><button class="add-btn" data-cat="cat-akihabara" data-name="🎎 애니메이트 아키하바라" onclick="addToItinerary('cat-akihabara', '🎎 애니메이트 아키하바라', 'https://www.google.com/maps/place/%EC%95%A0%EB%8B%88%EB%A9%94%EC%9D%B4%ED%8A%B8+%EC%95%84%ED%82%A4%ED%95%98%EB%B0%94%EB%9D%BC/@35.7004944,139.7717427,17z/data=!3m1!4b1!4m6!3m5!1s0x60188c1d96fb5701:0x9276f70f9d512927!8m2!3d35.7004944!4d139.7717427!16s%2Fg%2F1tk8nlb7!18m1!1e1?entry=ttu', this)">+</button></div>
+    <div class="area-item-row"><a class="area-item" href="https://www.google.com/maps?q=%EC%97%90%EB%8F%84%ED%9B%84%EC%A7%80+2+Chome-7-7+Yushima,+Bunkyo+City,+Tokyo+113-0034+%EC%9D%BC%EB%B3%B8&ftid=0x60188c1880227edb:0x3f10389b5ae031e5" target="_blank" rel="noopener"><span>에도후지<span class="area-time">카이센동</span></span></a><a class="area-blog" href="https://blog.naver.com/wlmds6790/224317544783" target="_blank" rel="noopener">↗ 블로그</a><button class="add-btn" data-cat="cat-akihabara" data-name="🍱 에도후지" onclick="addToItinerary('cat-akihabara', '🍱 에도후지', 'https://www.google.com/maps?q=%EC%97%90%EB%8F%84%ED%9B%84%EC%A7%80+2+Chome-7-7+Yushima,+Bunkyo+City,+Tokyo+113-0034+%EC%9D%BC%EB%B3%B8&ftid=0x60188c1880227edb:0x3f10389b5ae031e5', this)">+</button></div>
   </div>
   <div class="area-group" id="cat-asakusa">
     <div class="area-name-row"><div class="area-name">🛕 아사쿠사</div><select class="day-select" data-cat="cat-asakusa" onchange="assignCategoryToDay('cat-asakusa', this.value)"><option value="">일정에 추가</option><option value="day1">1DAY</option><option value="day2">2DAY</option><option value="day3">3DAY</option><option value="day4">4DAY</option></select></div>
@@ -542,10 +597,11 @@
 
   </div>
   </div>
-  <div class="sec-title" style="margin-top:36px;">💳 지출내역<span class="expense-hint" onclick="toggleBudgetInput()">(탭해서 예산 설정)</span><button class="sec-toggle" onclick="toggleSection('content-expense', this)">▾</button></div>
+  <div class="sec-title" style="margin-top:36px;">💳 지출내역<button class="sec-toggle" onclick="toggleSection('content-expense', this)">▾</button></div>
   <div id="content-expense">
-  <div class="budget-input-row" id="budgetInputRow">
-    <input type="number" id="budgetInput" placeholder="총 예산 (¥)">
+  <div class="budget-input-row" id="budgetInputRow" style="display:flex;">
+    <span class="budget-label">총 예산</span>
+    <input type="number" id="budgetInput" placeholder="¥">
     <button onclick="saveBudget()">저장</button>
   </div>
   <div class="expense-days">
@@ -601,6 +657,104 @@
 </div>
 
 <script>
+  // 구글맵 링크를 앱으로 우선 열기 (앱 없으면 웹으로 자동 전환)
+  function isIOS(){
+    return /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+  }
+  function isAndroid(){
+    return /Android/.test(navigator.userAgent);
+  }
+  function extractMapsQuery(url){
+    try{
+      var u = new URL(url, window.location.href);
+      if(u.searchParams.get('query')){
+        return decodeURIComponent(u.searchParams.get('query').replace(/\+/g, ' '));
+      }
+      var placeMatch = url.match(/\/maps\/place\/([^\/]+)/);
+      if(placeMatch){
+        return decodeURIComponent(placeMatch[1].replace(/\+/g, ' '));
+      }
+      if(u.searchParams.get('q')){
+        return decodeURIComponent(u.searchParams.get('q').replace(/\+/g, ' '));
+      }
+    }catch(e){}
+    return null;
+  }
+  function openInMapsApp(webUrl){
+    var query = extractMapsQuery(webUrl);
+    var appUrl = null;
+    if(query){
+      var encoded = encodeURIComponent(query);
+      if(isIOS()){ appUrl = 'comgooglemaps://?q=' + encoded; }
+      else if(isAndroid()){ appUrl = 'geo:0,0?q=' + encoded; }
+    }
+    if(!appUrl){
+      window.open(webUrl, '_blank');
+      return;
+    }
+    var opened = false;
+    var onBlur = function(){
+      opened = true;
+      window.removeEventListener('blur', onBlur);
+    };
+    window.addEventListener('blur', onBlur);
+    window.location.href = appUrl;
+    setTimeout(function(){
+      window.removeEventListener('blur', onBlur);
+      if(!opened){ window.open(webUrl, '_blank'); }
+    }, 1200);
+  }
+  // DAY별 동선(길찾기) 보기
+  var HOTEL_Q = 'Centurion Hotel & Spa Ueno Station Tokyo';
+  var NARITA_Q = 'Narita International Airport';
+  var ROUTE_DATA = {
+    day1: { origin: HOTEL_Q, destination: HOTEL_Q, waypoints: ['Yurakucho Station Tokyo', 'Ginza Station Tokyo', 'Tokyo Station'] },
+    day2: { origin: HOTEL_Q, destination: HOTEL_Q, waypoints: ['Azabudai Hills Tokyo', 'Roppongi Tokyo', 'Naka-Meguro Station Tokyo', 'Daikanyama Tokyo', 'Ebisu Station Tokyo'] },
+    day3: { origin: HOTEL_Q, destination: HOTEL_Q, waypoints: ['Kichijoji Station Tokyo', 'Omotesando Station Tokyo', 'Harajuku Station Tokyo', 'Shibuya Station Tokyo', 'Shinjuku Station Tokyo'] },
+    day4: { origin: HOTEL_Q, destination: NARITA_Q, waypoints: ['Nihombashi Station Tokyo', 'Akihabara Station Tokyo', 'Ueno Station Tokyo'] }
+  };
+
+  function openDayRoute(day){
+    var r = ROUTE_DATA[day];
+    if(!r){ return; }
+    var origin = encodeURIComponent(r.origin);
+    var destination = encodeURIComponent(r.destination);
+    var waypoints = r.waypoints.map(encodeURIComponent).join('|');
+    var webUrl = 'https://www.google.com/maps/dir/?api=1&origin=' + origin +
+      '&destination=' + destination + '&waypoints=' + waypoints + '&travelmode=transit';
+
+    var appUrl = null;
+    if(isIOS()){
+      appUrl = 'comgooglemaps://?saddr=' + origin + '&daddr=' + destination +
+        '&waypoints=' + waypoints + '&directionsmode=transit';
+    }
+    if(!appUrl){
+      window.open(webUrl, '_blank');
+      return;
+    }
+    var opened = false;
+    var onBlur = function(){
+      opened = true;
+      window.removeEventListener('blur', onBlur);
+    };
+    window.addEventListener('blur', onBlur);
+    window.location.href = appUrl;
+    setTimeout(function(){
+      window.removeEventListener('blur', onBlur);
+      if(!opened){ window.open(webUrl, '_blank'); }
+    }, 1200);
+  }
+
+  document.addEventListener('click', function(e){
+    var link = e.target.closest('a');
+    if(!link){ return; }
+    var href = link.getAttribute('href') || '';
+    if(href.indexOf('google.com/maps') !== -1 || href.indexOf('maps.google.com') !== -1){
+      e.preventDefault();
+      openInMapsApp(link.href);
+    }
+  });
+
   // 항공/숙소 등 텍스트 필드 직접 수정 기능
   var EDITABLE_KEY = 'tokyo_trip_editable_fields';
   var editableFields = {};
@@ -641,6 +795,7 @@
   // 구매리스트
   var SHOPPING_KEY = 'tokyo_trip_shopping_list';
   var shoppingItems = [];
+  var shoppingEditMode = false;
 
   function saveShoppingItems(){
     try{ localStorage.setItem(SHOPPING_KEY, JSON.stringify(shoppingItems)); }catch(e){}
@@ -671,6 +826,16 @@
       var name = document.createElement('span');
       name.className = 'shopping-name';
       name.textContent = item.name;
+      name.contentEditable = shoppingEditMode ? 'true' : 'false';
+      name.addEventListener('blur', function(){
+        var newName = name.textContent.trim();
+        if(newName){
+          shoppingItems[idx].name = newName;
+          saveShoppingItems();
+        } else {
+          name.textContent = shoppingItems[idx].name;
+        }
+      });
       var del = document.createElement('button');
       del.className = 'shopping-del';
       del.textContent = '✕';
@@ -1093,8 +1258,9 @@
     var name = nameInput.value.trim();
     var amount = parseFloat(amountInput.value);
     if(!name || !amount){ return; }
-    expenseData[day].push({name: name, amount: amount});
-    if(shopCheck && shopCheck.checked){
+    var inShopping = !!(shopCheck && shopCheck.checked);
+    expenseData[day].push({name: name, amount: amount, inShopping: inShopping});
+    if(inShopping){
       addToShoppingList(name, true);
       shopCheck.checked = false;
     }
@@ -1107,6 +1273,15 @@
   }
 
   function deleteExpense(day, idx){
+    var removed = expenseData[day][idx];
+    if(removed && removed.inShopping){
+      var sIdx = shoppingItems.findIndex(function(it){ return it.name === removed.name; });
+      if(sIdx > -1){
+        shoppingItems.splice(sIdx, 1);
+        saveShoppingItems();
+        renderShoppingList();
+      }
+    }
     expenseData[day].splice(idx, 1);
     saveExpenses();
     renderDay(day);
@@ -1143,28 +1318,22 @@
   }
 
   var BUDGET_KEY = 'tokyo_trip_budget';
-  function toggleBudgetInput(){
-    var row = document.getElementById('budgetInputRow');
-    var input = document.getElementById('budgetInput');
-    if(!row || !input){ return; }
-    var isHidden = (row.style.display === 'none' || row.style.display === '');
-    row.style.display = isHidden ? 'flex' : 'none';
-    if(isHidden){
-      try{
-        var current = localStorage.getItem(BUDGET_KEY);
-        if(current){ input.value = current; }
-      }catch(e){}
-      input.focus();
-    }
-  }
   function saveBudget(){
     var input = document.getElementById('budgetInput');
     var val = parseFloat(input.value);
     if(isNaN(val)){ return; }
     try{ localStorage.setItem(BUDGET_KEY, val); }catch(e){}
     updateGrandTotal();
-    document.getElementById('budgetInputRow').style.display = 'none';
+    input.blur();
   }
+
+  (function loadBudgetInput(){
+    try{
+      var current = localStorage.getItem(BUDGET_KEY);
+      var input = document.getElementById('budgetInput');
+      if(current && input){ input.value = current; }
+    }catch(e){}
+  })();
 
   (function initExpenses(){
     try{
@@ -1198,6 +1367,51 @@
       setTimeout(function(){ el.style.backgroundColor = prev; }, 900);
     }
   }
+  var STAY_MAP_KEY = 'tokyo_trip_stay_map';
+  function toggleStayMapEdit(){
+    var row = document.getElementById('stayMapEdit');
+    var input = document.getElementById('stayMapInput');
+    var link = document.getElementById('stayMapLink');
+    if(!row){ return; }
+    var showing = row.classList.toggle('visible');
+    if(showing && input && link){
+      input.value = link.getAttribute('href');
+      input.focus();
+    }
+  }
+  function saveStayMapLink(){
+    var input = document.getElementById('stayMapInput');
+    var link = document.getElementById('stayMapLink');
+    var url = input.value.trim();
+    if(!url){ return; }
+    link.setAttribute('href', url);
+    try{ localStorage.setItem(STAY_MAP_KEY, url); }catch(e){}
+    document.getElementById('stayMapEdit').classList.remove('visible');
+  }
+  (function loadStayMapLink(){
+    try{
+      var saved = localStorage.getItem(STAY_MAP_KEY);
+      var link = document.getElementById('stayMapLink');
+      if(saved && link){ link.setAttribute('href', saved); }
+    }catch(e){}
+  })();
+  document.getElementById('stayMapInput').addEventListener('keydown', function(e){
+    if(e.key === 'Enter'){ saveStayMapLink(); }
+  });
+
+  function toggleShoppingEdit(){
+    shoppingEditMode = !shoppingEditMode;
+    document.getElementById('content-shopping').classList.toggle('shopping-edit-mode', shoppingEditMode);
+    document.querySelectorAll('.shopping-name').forEach(function(el){
+      el.contentEditable = shoppingEditMode ? 'true' : 'false';
+    });
+  }
+
+  function togglePackAdd(){
+    var row = document.querySelector('#content-packing .pack-add');
+    if(row){ row.classList.toggle('visible'); }
+  }
+
   document.querySelectorAll('.pack-check').forEach(function(cb){
     var key = 'tokyo_trip_pack_' + cb.dataset.key;
     try{
@@ -1211,6 +1425,84 @@
       try{ localStorage.setItem(key, this.checked ? '1' : '0'); }catch(e){}
     });
   });
+
+  // 준비물 항목 삭제 (고정 항목)
+  function deletePackItem(packKey, btn){
+    try{ localStorage.setItem('tokyo_trip_pack_deleted_' + packKey, '1'); }catch(e){}
+    var row = btn.closest('.pack-item');
+    if(row){ row.remove(); }
+  }
+  document.querySelectorAll('.pack-item[data-pack-key]').forEach(function(row){
+    var key = row.dataset.packKey;
+    try{
+      if(localStorage.getItem('tokyo_trip_pack_deleted_' + key) === '1'){
+        row.remove();
+      }
+    }catch(e){}
+  });
+
+  // 준비물 항목 추가 (사용자 정의)
+  var PACK_CUSTOM_KEY = 'tokyo_trip_pack_custom';
+  var packCustomItems = [];
+
+  function savePackCustomItems(){
+    try{ localStorage.setItem(PACK_CUSTOM_KEY, JSON.stringify(packCustomItems)); }catch(e){}
+  }
+
+  function renderPackCustomList(){
+    var list = document.getElementById('packCustomList');
+    list.innerHTML = '';
+    packCustomItems.forEach(function(item, idx){
+      var row = document.createElement('div');
+      row.className = 'pack-item' + (item.checked ? ' checked' : '');
+      var cb = document.createElement('input');
+      cb.type = 'checkbox';
+      cb.className = 'pack-check';
+      cb.checked = !!item.checked;
+      cb.addEventListener('change', function(){
+        packCustomItems[idx].checked = cb.checked;
+        row.classList.toggle('checked', cb.checked);
+        savePackCustomItems();
+      });
+      var label = document.createElement('span');
+      label.className = 'pack-label-plain';
+      label.textContent = item.name;
+      var del = document.createElement('button');
+      del.className = 'pack-del';
+      del.textContent = '✕';
+      del.addEventListener('click', function(){
+        packCustomItems.splice(idx, 1);
+        savePackCustomItems();
+        renderPackCustomList();
+      });
+      row.appendChild(cb);
+      row.appendChild(label);
+      row.appendChild(del);
+      list.appendChild(row);
+    });
+  }
+
+  function addPackItem(){
+    var input = document.getElementById('packInput');
+    var name = input.value.trim();
+    if(!name){ return; }
+    packCustomItems.push({name: name, checked: false});
+    input.value = '';
+    savePackCustomItems();
+    renderPackCustomList();
+    input.focus();
+  }
+
+  (function initPackCustom(){
+    try{
+      var saved = localStorage.getItem(PACK_CUSTOM_KEY);
+      if(saved){ packCustomItems = JSON.parse(saved); }
+    }catch(e){}
+    renderPackCustomList();
+    document.getElementById('packInput').addEventListener('keydown', function(e){
+      if(e.key === 'Enter'){ addPackItem(); }
+    });
+  })();
 </script>
 </body>
 </html>
